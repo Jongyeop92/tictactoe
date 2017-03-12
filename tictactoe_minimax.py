@@ -71,7 +71,7 @@ def test():
 
     state.showBoard()
 
-    print "Success"
+    print "Success on company"
 
 if __name__ == "__main__":
     test()
