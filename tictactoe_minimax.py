@@ -1,8 +1,6 @@
 EMPTY  = '-'
 X_MARK = 'X'
 O_MARK = 'O'
-
-
 class BoardState:
 
     def __init__(self, width, height):
