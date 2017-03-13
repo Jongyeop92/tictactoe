@@ -204,6 +204,9 @@ def main():
     #turn += 1
     #maxPlayer = False
 
+    state.showBoard()
+    print
+
     while True:
 
         if state.isWin() or state.isFull():
