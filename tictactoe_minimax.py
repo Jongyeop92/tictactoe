@@ -199,31 +199,34 @@ def main():
     turn = 0
     maxPlayer = True
 
-    state.setMark(X_MARK, (2, 2))
-    state.setMark(O_MARK, (2, 0))
+    #state.setMark(X_MARK, (2, 2))
+    #state.setMark(O_MARK, (2, 0))
     #turn += 1
     #maxPlayer = False
 
-    state.showBoard()
-    print
+    human = input()
 
     while True:
+
+        state.showBoard()
 
         if state.isWin() or state.isFull():
             break
 
-        start = time.time()
-        info = minimax(state, 9, maxPlayer, True)
-        gap = time.time() - start
+        if turn == human:
+            y, x = map(int, raw_input().split())
 
-        state.setMark(markList[turn], info[1])
+            state.setMark(markList[turn], (y, x))
+        else:
+            start = time.time()
+            info = minimax(state, 9, maxPlayer, True)
+            gap = time.time() - start
 
-        print
-        state.showBoard()
+            state.setMark(markList[turn], info[1])
 
-        print "Info:", info
-        print "Gap :", gap
-        print
+            print "Info:", info
+            print "Gap :", gap
+
         print
 
         turn = (turn + 1) % 2
