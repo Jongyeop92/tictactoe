@@ -108,6 +108,7 @@ def alphabeta(state, depth, alpha, beta, maxPlayer, firstCall=False):
 
     bestInfo = None
     possiblePositionList = state.getPossiblePositionList()
+    random.shuffle(possiblePositionList)
 
     for position in possiblePositionList:
         copyState = copy.deepcopy(state)
