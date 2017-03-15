@@ -68,6 +68,8 @@ def test():
     state = Board(3, 3)
 
     print monteCarlo.get_play(state, X_MARK)
+    print monteCarlo.plays
+    print monteCarlo.wins
     print
     
 

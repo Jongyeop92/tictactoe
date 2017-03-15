@@ -8,10 +8,10 @@ import copy
 class MonteCarlo(object):
 
     def __init__(self, **kwargs):
-        seconds = kwargs.get('time', 10)
+        seconds = kwargs.get('time', 3)
         self.calculation_time = datetime.timedelta(seconds=seconds)
 
-        self.max_moves = kwargs.get('max_moves', 5)
+        self.max_moves = kwargs.get('max_moves', 10)
 
         self.wins = {}
         self.plays = {}
@@ -93,8 +93,8 @@ class MonteCarlo(object):
 
             if expand and (player, state) not in plays:
                 expand = False
-                plays[(player, state.getBoardStr())] = 0
-                wins[(player, state.getBoardStr())] = 0
+                self.plays[(player, state.getBoardStr())] = 0
+                self.wins[(player, state.getBoardStr())] = 0
                 if t > self.max_depth:
                     self.max_depth = t
 
@@ -104,7 +104,7 @@ class MonteCarlo(object):
             winner = state.isWin()
             if winner:
                 break
-
+        
         for player, state in visited_states:
             if (player, state.getBoardStr()) not in self.plays:
                 continue

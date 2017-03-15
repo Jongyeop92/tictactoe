@@ -2,6 +2,7 @@
 
 from Board import *
 from GameAI import *
+from MonteCarlo import *
 
 import time
 
