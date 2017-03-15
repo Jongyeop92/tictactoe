@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 
 from Board import *
+from MonteCarlo import *
 
 import copy
 
@@ -61,6 +62,13 @@ def test():
     newState = copy.deepcopy(state)
     assert id(state) != id(newState)
     assert id(state.getBoard()) != id(newState.getBoard())
+
+
+    monteCarlo = MonteCarlo()
+    state = Board(3, 3)
+
+    print monteCarlo.get_play(state, X_MARK)
+    print
     
 
     print "Success"

@@ -4,6 +4,8 @@ EMPTY  = '-'
 X_MARK = 'X'
 O_MARK = 'O'
 
+DRAW = 'draw'
+
 INFINITE = 999999
 
 class Board:
@@ -12,15 +14,13 @@ class Board:
         self.width = width
         self.height = height
         self.board = self.makeBoard(width, height)
+        self.lastMark = None
         self.lastPosition = None
         self.WIN_COUNT = 3
         self.directionPairList = [[(-1, 0), ( 1,  0)],
                                   [(-1, 1), ( 1, -1)],
                                   [( 0, 1), ( 0, -1)],
                                   [( 1, 1), (-1, -1)]]
-
-    def getBoard(self):
-        return self.board
 
     def makeBoard(self, width, height):
         board = []
@@ -30,7 +30,19 @@ class Board:
 
         return board
 
-    def getPossiblePositionList(self):
+    def getBoard(self):
+        return self.board
+
+    def getBoardStr(self):
+        return '\n'.join(''.join(row) for row in self.board)
+
+    def getNextPlayer(self):
+        if self.lastMark == None or self.lastMark == O_MARK:
+            return X_MARK
+        else:
+            return O_MARK
+
+    def getPossiblePositionList(self, mark=None):
         positionList = []
         
         for y in range(self.height):
@@ -43,6 +55,7 @@ class Board:
     def setMark(self, mark, position):
         y, x = position
         self.board[y][x] = mark
+        self.lastMark = mark
         self.lastPosition = position
 
     def showBoard(self):
@@ -80,6 +93,9 @@ class Board:
 
             if sameMarkCount == self.WIN_COUNT:
                 return nowMark
+
+        if self.isFull():
+            return DRAW
 
         return None
 
