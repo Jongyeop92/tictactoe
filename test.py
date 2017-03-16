@@ -64,12 +64,10 @@ def test():
     assert id(state.getBoard()) != id(newState.getBoard())
 
 
-    monteCarlo = MonteCarlo()
+    monteCarlo = MonteCarlo(time=5)
     state = Board(3, 3)
 
     print monteCarlo.get_play(state, X_MARK)
-    print monteCarlo.plays
-    print monteCarlo.wins
     print
     
 

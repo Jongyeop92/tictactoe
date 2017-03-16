@@ -12,6 +12,8 @@ def main():
     turn = 0
     maxPlayer = True
 
+    monteCarlo = MonteCarlo(time=3)
+
     #state.setMark(X_MARK, (2, 2))
     #state.setMark(O_MARK, (2, 0))
     #turn += 1
@@ -26,19 +28,28 @@ def main():
         if state.isWin() or state.isFull():
             break
 
+        nowMark = markList[turn]
+
         if turn == human:
             y, x = map(int, raw_input().split())
 
-            state.setMark(markList[turn], (y, x))
+            state.setMark(nowMark, (y, x))
         else:
             start = time.time()
 
+            if nowMark == X_MARK:
+                pass
+            else:
+                pass
+
             #info = minimax(state, 9, maxPlayer, True)
-            info = alphabeta(state, 9, -INFINITE, INFINITE, maxPlayer, True)
+            #info = alphabeta(state, 9, -INFINITE, INFINITE, maxPlayer, True)
+
+            info = monteCarlo.get_play(state, nowMark)
 
             gap = time.time() - start
 
-            state.setMark(markList[turn], info[1])
+            state.setMark(nowMark, info[1])
 
             print "Info:", info
             print "Gap :", gap
