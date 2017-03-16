@@ -38,14 +38,15 @@ def main():
             start = time.time()
 
             if nowMark == X_MARK:
+                info = monteCarlo.get_play(state, nowMark)
                 pass
             else:
+                info = minimax(state, 9, maxPlayer, True)
                 pass
 
             #info = minimax(state, 9, maxPlayer, True)
             #info = alphabeta(state, 9, -INFINITE, INFINITE, maxPlayer, True)
-
-            info = monteCarlo.get_play(state, nowMark)
+            #info = monteCarlo.get_play(state, nowMark)
 
             gap = time.time() - start
 
